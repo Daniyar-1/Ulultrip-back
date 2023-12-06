@@ -1,0 +1,32 @@
+version: '3'
+services:
+  back:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ..:/app
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ../.env
+    networks:
+      - main-network
+      - nginx-network
+      
+  db:
+    image: postgres:15-alpine
+    restart: always
+    volumes:
+      - ../data/postgres/storage:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - ../.env
+    networks:
+      - main-network
+      
+networks:
+  main-network:
+    driver: bridge
