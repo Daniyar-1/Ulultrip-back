@@ -8,9 +8,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    checkout scm
+                    // checkout scm
                     echo 'Starting docker containers'
-                    sh 'cd docker && docker-compose -f docker-compose.yaml -f staging/docker-compose-staging.yaml build '
+                    sh 'cd docker'
+                    sh 'docker-compose -f docker-compose.yaml -f staging/docker-compose-staging.yaml build '
                     echo 'Build succeed' 
                 }
             }
