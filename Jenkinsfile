@@ -10,8 +10,11 @@ pipeline {
             steps {
                 script {
                     checkout scm
+                    echo 'Installing dependencies'
                     sh 'pip install -r requirements.txt'
-                    sh "cd docker && docker compose -f docker-compose.yaml -f staging/docker-compose-staging.yaml build "
+                    echo 'Starting docker containers'
+                    sh 'cd docker && docker compose -f docker-compose.yaml -f staging/docker-compose-staging.yaml build '
+                    echo 'Build succeed' 
                 }
             }
         }
