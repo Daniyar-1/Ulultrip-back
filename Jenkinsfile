@@ -28,6 +28,7 @@ pipeline {
             // Очищаем ресурсы после выполнения сценария (необходимо или нет - зависит от ваших требований)
             script {
                 sh 'docker-compose -f docker/docker-compose.yaml -f docker/staging/docker-compose-staging.yaml down'
+                }
             }
         }
     }
