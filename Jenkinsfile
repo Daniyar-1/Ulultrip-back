@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Получаем исходный код из репозитория (замените на ваш URL репозитория)
-                git 'https://github.com/Daniyar-1/Ulultrip-back.git'
-            }
-        }
-
         stage('Build and Deploy') {
             steps {
                 script {
